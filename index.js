@@ -3,6 +3,9 @@ import express from "express";
 import winston from "winston";
 import cors from "cors";
 
+// Routers
+import usuarioRouter from "./src/routes/usuario.route.js";
+
 const { combine, timestamp, label, printf } = winston.format;
 const logFormat = printf(({ level, message, label, timestamp }) => {
   return `${timestamp} [${label}] ${level}: ${message}`;
@@ -26,7 +29,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// TODO: implementar rotas
+app.use("/usuarios", usuarioRouter);
 
 app.listen(3000, async () => {
   logger.info("API rodando na porta 3000.");
