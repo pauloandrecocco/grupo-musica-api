@@ -3,8 +3,9 @@ import Sequelize from "sequelize";
 // Database
 import { sequelize } from "../../config/db.js";
 
+const tableName = "usuarios";
 const Usuario = sequelize.define(
-  "usuarios",
+  tableName,
   {
     usuarioId: {
       type: Sequelize.INTEGER,
@@ -33,5 +34,9 @@ const Usuario = sequelize.define(
   },
   { underscore: true }
 );
+
+await sequelize.sync({ alter: true }).catch((error) => {
+  console.error(`Falha ao sincronizar tabela "${tableName}": ${error}`);
+});
 
 export default Usuario;

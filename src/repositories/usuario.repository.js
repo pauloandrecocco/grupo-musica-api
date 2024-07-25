@@ -8,9 +8,7 @@ async function insertUsuario(usuario) {
   try {
     return await Usuario.create(usuario);
   } catch (err) {
-    throw err;
-    // const error = errorHandler(500, err.message);
-    //throw error;
+    throw errorHandler(400, err.message);
   }
 }
 
@@ -18,9 +16,7 @@ async function listUsuarios() {
   try {
     return await Usuario.findAll();
   } catch (err) {
-    throw err;
-    // const error = errorHandler(500, err.message);
-    //throw error;
+    throw errorHandler(500, err.message);
   }
 }
 
@@ -30,9 +26,7 @@ async function getUsuario(usuarioId) {
       raw: true,
     });
   } catch (err) {
-    throw err;
-    // const error = errorHandler(500, err.message);
-    //throw error;
+    throw errorHandler(500, err.message);
   }
 }
 
@@ -44,9 +38,7 @@ async function deleteUsuario(usuarioId) {
       },
     });
   } catch (err) {
-    throw err;
-    // const error = errorHandler(500, err.message);
-    //throw error;
+    throw errorHandler(500, err.message);
   }
 }
 
@@ -59,9 +51,7 @@ async function updateUsuario(usuarioId, usuario) {
     });
     return await getUsuario(usuarioId);
   } catch (err) {
-    throw err;
-    // const error = errorHandler(500, err.message);
-    //throw error;
+    throw errorHandler(500, err.message);
   }
 }
 

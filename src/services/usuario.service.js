@@ -1,9 +1,6 @@
 // Repositories
 import UsuarioRepository from "../repositories/usuario.repository.js";
 
-// Utils
-import { errorHandler } from "../utils/error-handler.js";
-
 async function createUsuario(usuario) {
   return await UsuarioRepository.insertUsuario(usuario);
 }
