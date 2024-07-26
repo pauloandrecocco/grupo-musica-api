@@ -3,30 +3,21 @@ import Sequelize from "sequelize";
 // Database
 import { sequelize } from "../../config/db.js";
 
-const Usuario = sequelize.define(
-  "usuarios",
+const Funcao = sequelize.define(
+  "funcoes",
   {
-    usuarioId: {
+    funcaoId: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       allowNull: false,
-      field: "usuario_id",
+      field: "funcao_id",
     },
     nome: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    senha: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    telefone: {
+    descricao: {
       type: Sequelize.STRING,
       allowNull: true,
     },
@@ -34,4 +25,4 @@ const Usuario = sequelize.define(
   { underscore: true }
 );
 
-export default Usuario;
+export default Funcao;

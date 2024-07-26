@@ -1,5 +1,5 @@
 // Models
-import Usuario from "../models/usuario.model.js";
+import { Usuario } from "../models/index.js";
 
 // Utils
 import { errorHandler } from "../utils/error-handler.js";
@@ -8,7 +8,7 @@ async function insertUsuario(usuario) {
   try {
     return await Usuario.create(usuario);
   } catch (err) {
-    throw errorHandler(400, err.message);
+    throw errorHandler(500, err.message);
   }
 }
 

@@ -4,6 +4,7 @@ import winston from "winston";
 import cors from "cors";
 
 // Routers
+import funcaoRouter from "./src/routes/funcao.route.js";
 import usuarioRouter from "./src/routes/usuario.route.js";
 
 const { combine, timestamp, label, printf } = winston.format;
@@ -29,6 +30,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Routes
+app.use("/funcoes", funcaoRouter);
 app.use("/usuarios", usuarioRouter);
 
 app.listen(3000, async () => {
