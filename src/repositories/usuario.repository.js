@@ -1,12 +1,12 @@
 // Models
-import { Usuario } from "../models/index.js";
+import { Usuario, Funcao } from "../models/index.js";
 
 // Utils
 import { errorHandler } from "../utils/error-handler.js";
 
 async function insertUsuario(usuario) {
   try {
-    return await Usuario.create(usuario);
+    return await Usuario.create(usuario, { include: "funcoes" });
   } catch (err) {
     throw errorHandler(500, err.message);
   }
@@ -14,7 +14,7 @@ async function insertUsuario(usuario) {
 
 async function listUsuarios() {
   try {
-    return await Usuario.findAll();
+    return await Usuario.findAll({ include: "funcoes" });
   } catch (err) {
     throw errorHandler(500, err.message);
   }
@@ -22,9 +22,7 @@ async function listUsuarios() {
 
 async function getUsuario(usuarioId) {
   try {
-    return await Usuario.findByPk(usuarioId, {
-      raw: true,
-    });
+    return await Usuario.findByPk(usuarioId, { include: "funcoes" });
   } catch (err) {
     throw errorHandler(500, err.message);
   }
@@ -42,14 +40,45 @@ async function deleteUsuario(usuarioId) {
   }
 }
 
-async function updateUsuario(usuarioId, usuario) {
+async function updateUsuario(usuarioId, campos) {
   try {
-    await Usuario.update(usuario, {
+    const { funcoes, ...usuario } = campos;
+
+    if (usuario) {
+      await Usuario.update(usuario, {
+        where: {
+          usuarioId,
+        },
+      });
+    }
+    if (funcoes) {
+      await addFuncoesToUsuario(usuarioId, funcoes);
+    }
+
+    return await getUsuario(usuarioId);
+  } catch (err) {
+    throw errorHandler(500, err.message);
+  }
+}
+
+async function addFuncoesToUsuario(usuarioId, funcoesIds) {
+  try {
+    const usuario = await getUsuario(usuarioId);
+
+    const funcoes = await Funcao.findAll({
       where: {
-        usuarioId,
+        funcaoId: funcoesIds,
       },
     });
-    return await getUsuario(usuarioId);
+
+    if (funcoes.length !== funcoesIds.length) {
+      throw errorHandler(
+        500,
+        "Nem todas as funções com IDs informados foram encontradas."
+      );
+    }
+
+    await usuario.addFuncoes(funcoes);
   } catch (err) {
     throw errorHandler(500, err.message);
   }
