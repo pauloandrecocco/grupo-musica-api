@@ -1,6 +1,7 @@
 // Models
 import Funcao from "./funcao.model.js";
 import FuncaoUsuario from "./funcao.usuario.model.js";
+import Musica from "./musica.model.js";
 import Usuario from "./usuario.model.js";
 
 // Database
@@ -10,4 +11,4 @@ import { sequelize } from "../../config/db.js";
   await sequelize.sync({ alter: true });
 })();
 
-export { Usuario, Funcao, FuncaoUsuario };
+export { Usuario, Funcao, FuncaoUsuario, Musica };

@@ -5,6 +5,7 @@ import cors from "cors";
 
 // Routers
 import funcaoRouter from "./src/routes/funcao.route.js";
+import musicaRouter from "./src/routes/musica.route.js";
 import usuarioRouter from "./src/routes/usuario.route.js";
 
 const { combine, timestamp, label, printf } = winston.format;
@@ -32,6 +33,7 @@ app.use(cors());
 
 // Routes
 app.use("/funcoes", funcaoRouter);
+app.use("/musicas", musicaRouter);
 app.use("/usuarios", usuarioRouter);
 
 app.listen(3000, async () => {
