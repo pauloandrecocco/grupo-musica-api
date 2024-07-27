@@ -1,4 +1,7 @@
 // Models
+import Escala from "./escala.model.js";
+import EscalaMusica from "./escala.musica.model.js";
+import EscalaUsuario from "./escala.usuario.model.js";
 import Funcao from "./funcao.model.js";
 import FuncaoUsuario from "./funcao.usuario.model.js";
 import Musica from "./musica.model.js";
@@ -11,4 +14,12 @@ import { sequelize } from "../../config/db.js";
   await sequelize.sync({ alter: true });
 })();
 
-export { Usuario, Funcao, FuncaoUsuario, Musica };
+export {
+  Escala,
+  EscalaMusica,
+  EscalaUsuario,
+  Funcao,
+  FuncaoUsuario,
+  Musica,
+  Usuario,
+};

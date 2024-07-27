@@ -4,6 +4,7 @@ import winston from "winston";
 import cors from "cors";
 
 // Routers
+import escalaRouter from "./src/routes/escala.route.js";
 import funcaoRouter from "./src/routes/funcao.route.js";
 import musicaRouter from "./src/routes/musica.route.js";
 import usuarioRouter from "./src/routes/usuario.route.js";
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+app.use("/escalas", escalaRouter);
 app.use("/funcoes", funcaoRouter);
 app.use("/musicas", musicaRouter);
 app.use("/usuarios", usuarioRouter);
