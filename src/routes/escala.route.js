@@ -4,15 +4,18 @@ import express from "express";
 import EscalaController from "../controllers/escala.controller.js";
 
 // Middlewares
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import {
+  adminAuthMiddleware,
+  userAuthMiddleware,
+} from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, EscalaController.createEscala);
-router.get("/", authMiddleware, EscalaController.listEscalas);
-router.get("/:escalaId", authMiddleware, EscalaController.getEscala);
-router.delete("/:escalaId", authMiddleware, EscalaController.deleteEscala);
-router.put("/:escalaId", authMiddleware, EscalaController.updateEscala);
+router.post("/", adminAuthMiddleware, EscalaController.createEscala);
+router.get("/", userAuthMiddleware, EscalaController.listEscalas);
+router.get("/:escalaId", userAuthMiddleware, EscalaController.getEscala);
+router.delete("/:escalaId", adminAuthMiddleware, EscalaController.deleteEscala);
+router.put("/:escalaId", adminAuthMiddleware, EscalaController.updateEscala);
 
 // Error handling
 router.use((err, req, res, next) => {

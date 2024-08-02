@@ -4,15 +4,18 @@ import express from "express";
 import FuncaoController from "../controllers/funcao.controller.js";
 
 // Middlewares
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import {
+  adminAuthMiddleware,
+  userAuthMiddleware,
+} from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, FuncaoController.createFuncao);
-router.get("/", authMiddleware, FuncaoController.listFuncoes);
-router.get("/:funcaoId", authMiddleware, FuncaoController.getFuncao);
-router.delete("/:funcaoId", authMiddleware, FuncaoController.deleteFuncao);
-router.put("/:funcaoId", authMiddleware, FuncaoController.updateFuncao);
+router.post("/", adminAuthMiddleware, FuncaoController.createFuncao);
+router.get("/", userAuthMiddleware, FuncaoController.listFuncoes);
+router.get("/:funcaoId", userAuthMiddleware, FuncaoController.getFuncao);
+router.delete("/:funcaoId", adminAuthMiddleware, FuncaoController.deleteFuncao);
+router.put("/:funcaoId", adminAuthMiddleware, FuncaoController.updateFuncao);
 
 // Error handling
 router.use((err, req, res, next) => {

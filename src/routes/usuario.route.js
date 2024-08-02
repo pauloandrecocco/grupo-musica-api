@@ -4,15 +4,22 @@ import express from "express";
 import UsuarioController from "../controllers/usuario.controller.js";
 
 // Middlewares
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import {
+  adminAuthMiddleware,
+  userAuthMiddleware,
+} from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, UsuarioController.createUsuario);
-router.get("/", authMiddleware, UsuarioController.listUsuarios);
-router.get("/:usuarioId", authMiddleware, UsuarioController.getUsuario);
-router.delete("/:usuarioId", authMiddleware, UsuarioController.deleteUsuario);
-router.put("/:usuarioId", authMiddleware, UsuarioController.updateUsuario);
+router.post("/", adminAuthMiddleware, UsuarioController.createUsuario);
+router.get("/", userAuthMiddleware, UsuarioController.listUsuarios);
+router.get("/:usuarioId", userAuthMiddleware, UsuarioController.getUsuario);
+router.delete(
+  "/:usuarioId",
+  adminAuthMiddleware,
+  UsuarioController.deleteUsuario
+);
+router.put("/:usuarioId", userAuthMiddleware, UsuarioController.updateUsuario);
 
 // Error handling
 router.use((err, req, res, next) => {

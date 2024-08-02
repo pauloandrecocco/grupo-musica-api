@@ -12,11 +12,19 @@ export const validateCredentials = (authHeader) => {
   return { username, password };
 };
 
-export const isSuperuser = (username, password) => {
+export const areSuperuserCredentials = (username, password) => {
   return (
     username === process.env.SUPERUSER_USER &&
     password === process.env.SUPERUSER_PASS
   );
+};
+
+export const isSuperuser = (reqUsuario) => {
+  return reqUsuario === "superuser";
+};
+
+export const isSameUser = (reqUsuario, usuarioId) => {
+  return reqUsuario.usuarioId === usuarioId;
 };
 
 const getCredentialsFromAuthHeader = (authHeader) => {

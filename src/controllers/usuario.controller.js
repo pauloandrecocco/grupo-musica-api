@@ -1,6 +1,10 @@
 // Services
 import UsuarioService from "../services/usuario.service.js";
 
+// Utils
+import { errorHandler } from "../utils/error-handler.js";
+import { isSuperuser, isSameUser } from "../utils/auth.js";
+
 async function createUsuario(req, res, next) {
   const usuario = req.body;
 
@@ -48,9 +52,16 @@ async function deleteUsuario(req, res, next) {
 async function updateUsuario(req, res, next) {
   const { usuarioId } = req.params;
   const usuario = req.body;
+  const reqUsuario = req.user;
 
   try {
-    res.send(await UsuarioService.updateUsuario(usuarioId, usuario));
+    if (!isSuperuser(reqUsuario) && !isSameUser(reqUsuario, usuarioId)) {
+      throw errorHandler(403, "Forbidden User");
+    }
+
+    res.send(
+      await UsuarioService.updateUsuario(usuarioId, usuario, reqUsuario)
+    );
     logger.info(`${req.method} ${req.baseUrl} | Success`);
   } catch (err) {
     next(err);

@@ -2,18 +2,35 @@
 import UsuarioService from "../services/usuario.service.js";
 
 // Utils
-import { validateCredentials, isSuperuser } from "../utils/auth.js";
+import { validateCredentials, areSuperuserCredentials } from "../utils/auth.js";
 
-export const authMiddleware = async (req, res, next) => {
+export const adminAuthMiddleware = async (req, res, next) => {
   const { username, password, errorMessage } = validateCredentials(
     req.headers.authorization
   );
 
   if (errorMessage) {
-    return res.status(401).json({ message: errorMessage });
+    return res.status(401).json({ error: errorMessage });
   }
 
-  if (isSuperuser(username, password)) {
+  if (areSuperuserCredentials(username, password)) {
+    req.user = "superuser";
+    return next();
+  }
+
+  return res.status(401).json({ error: "Invalid Authentication Credentials" });
+};
+
+export const userAuthMiddleware = async (req, res, next) => {
+  const { username, password, errorMessage } = validateCredentials(
+    req.headers.authorization
+  );
+
+  if (errorMessage) {
+    return res.status(401).json({ error: errorMessage });
+  }
+
+  if (areSuperuserCredentials(username, password)) {
     req.user = "superuser";
     return next();
   }
@@ -25,7 +42,5 @@ export const authMiddleware = async (req, res, next) => {
     return next();
   }
 
-  return res
-    .status(401)
-    .json({ message: "Invalid Authentication Credentials" });
+  return res.status(401).json({ error: "Invalid Authentication Credentials" });
 };

@@ -4,15 +4,18 @@ import express from "express";
 import MusicaController from "../controllers/musica.controller.js";
 
 // Middlewares
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import {
+  adminAuthMiddleware,
+  userAuthMiddleware,
+} from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, MusicaController.createMusica);
-router.get("/", authMiddleware, MusicaController.listMusicas);
-router.get("/:musicaId", authMiddleware, MusicaController.getMusica);
-router.delete("/:musicaId", authMiddleware, MusicaController.deleteMusica);
-router.put("/:musicaId", authMiddleware, MusicaController.updateMusica);
+router.post("/", adminAuthMiddleware, MusicaController.createMusica);
+router.get("/", userAuthMiddleware, MusicaController.listMusicas);
+router.get("/:musicaId", userAuthMiddleware, MusicaController.getMusica);
+router.delete("/:musicaId", adminAuthMiddleware, MusicaController.deleteMusica);
+router.put("/:musicaId", adminAuthMiddleware, MusicaController.updateMusica);
 
 // Error handling
 router.use((err, req, res, next) => {
