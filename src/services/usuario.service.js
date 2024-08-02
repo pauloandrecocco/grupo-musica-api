@@ -21,10 +21,15 @@ async function updateUsuario(usuarioId, usuario) {
   return await UsuarioRepository.updateUsuario(usuarioId, usuario);
 }
 
+async function getUsuarioByEmail(email) {
+  return await UsuarioRepository.getUsuarioByEmail(email);
+}
+
 export default {
   createUsuario,
   listUsuarios,
   getUsuario,
   deleteUsuario,
   updateUsuario,
+  getUsuarioByEmail,
 };

@@ -61,6 +61,19 @@ async function updateUsuario(usuarioId, campos) {
   }
 }
 
+async function getUsuarioByEmail(email) {
+  try {
+    return (
+      await Usuario.findAll({
+        where: { email },
+        raw: true,
+      })
+    )[0];
+  } catch (err) {
+    throw errorHandler(500, err.message);
+  }
+}
+
 async function addFuncoesToUsuario(usuarioId, funcoesIds) {
   try {
     const usuario = await getUsuario(usuarioId);
@@ -90,4 +103,5 @@ export default {
   getUsuario,
   deleteUsuario,
   updateUsuario,
+  getUsuarioByEmail,
 };
