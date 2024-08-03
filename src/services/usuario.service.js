@@ -6,7 +6,11 @@ import UsuarioRepository from "../repositories/usuario.repository.js";
 
 // Utils
 import { encryptPassword } from "../utils/password.js";
-import { usuarioReturnDTO, funcoesReturnDTO } from "../utils/dto.js";
+import {
+  usuarioReturnDTO,
+  usuariosReturnDTO,
+  funcoesReturnDTO,
+} from "../utils/dto.js";
 
 async function createUsuario(usuario) {
   const hashedSenha = await encryptPassword(usuario.senha);
@@ -20,7 +24,7 @@ async function createUsuario(usuario) {
 
 async function listUsuarios() {
   const usuarios = await UsuarioRepository.listUsuarios();
-  return usuarios.map((usuario) => usuarioReturnDTO(usuario));
+  return usuariosReturnDTO(usuarios);
 }
 
 async function getUsuario(usuarioId, withDTO = true) {

@@ -9,6 +9,10 @@ export const usuarioReturnDTO = (usuario) => {
   };
 };
 
+export const usuariosReturnDTO = (usuarios) => {
+  return usuarios.map((usuario) => usuarioReturnDTO(usuario));
+};
+
 // Função
 export const funcaoReturnDTO = (funcao) => {
   return {

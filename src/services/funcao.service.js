@@ -3,7 +3,7 @@ import FuncaoRepository from "../repositories/funcao.repository.js";
 
 // Utils
 import {
-  usuarioReturnDTO,
+  usuariosReturnDTO,
   funcaoReturnDTO,
   funcoesReturnDTO,
 } from "../utils/dto.js";
@@ -33,7 +33,7 @@ async function listUsuariosByFuncao(funcaoId) {
   const funcao = await getFuncao(funcaoId, false);
   const usuarios = await funcao.getUsuarios();
 
-  return usuarios.map((usuario) => usuarioReturnDTO(usuario));
+  return usuariosReturnDTO(usuarios);
 }
 
 export default {
