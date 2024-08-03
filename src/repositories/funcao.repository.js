@@ -22,9 +22,7 @@ async function listFuncoes() {
 
 async function getFuncao(funcaoId) {
   try {
-    return await Funcao.findByPk(funcaoId, {
-      raw: true,
-    });
+    return await Funcao.findByPk(funcaoId);
   } catch (err) {
     throw errorHandler(500, err.message);
   }

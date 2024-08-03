@@ -21,6 +21,22 @@ router.delete(
 );
 router.put("/:usuarioId", userAuthMiddleware, UsuarioController.updateUsuario);
 
+router.post(
+  "/:usuarioId/funcoes/:funcaoId",
+  adminAuthMiddleware,
+  UsuarioController.addFunction
+);
+router.get(
+  "/:usuarioId/funcoes",
+  userAuthMiddleware,
+  UsuarioController.listFunctions
+);
+router.delete(
+  "/:usuarioId/funcoes/:funcaoId",
+  adminAuthMiddleware,
+  UsuarioController.removeFunction
+);
+
 // Error handling
 router.use((err, req, res, next) => {
   res.status(err.code ?? 500).send({ error: err.message });

@@ -1,5 +1,5 @@
 // Models
-import { Usuario, Funcao } from "../models/index.js";
+import { Usuario } from "../models/index.js";
 
 // Utils
 import { errorHandler } from "../utils/error-handler.js";
@@ -14,7 +14,7 @@ async function insertUsuario(usuario) {
 
 async function listUsuarios() {
   try {
-    return await Usuario.findAll({ include: "funcoes" });
+    return await Usuario.findAll();
   } catch (err) {
     throw errorHandler(500, err.message);
   }
@@ -40,20 +40,13 @@ async function deleteUsuario(usuarioId) {
   }
 }
 
-async function updateUsuario(usuarioId, campos) {
+async function updateUsuario(usuarioId, usuario) {
   try {
-    const { funcoes, ...usuario } = campos;
-
-    if (usuario) {
-      await Usuario.update(usuario, {
-        where: {
-          usuarioId,
-        },
-      });
-    }
-    if (funcoes) {
-      await addFuncoesToUsuario(usuarioId, funcoes);
-    }
+    await Usuario.update(usuario, {
+      where: {
+        usuarioId,
+      },
+    });
 
     return await getUsuario(usuarioId);
   } catch (err) {
@@ -69,29 +62,6 @@ async function getUsuarioByEmail(email) {
         raw: true,
       })
     )[0];
-  } catch (err) {
-    throw errorHandler(500, err.message);
-  }
-}
-
-async function addFuncoesToUsuario(usuarioId, funcoesIds) {
-  try {
-    const usuario = await getUsuario(usuarioId);
-
-    const funcoes = await Funcao.findAll({
-      where: {
-        funcaoId: funcoesIds,
-      },
-    });
-
-    if (funcoes.length !== funcoesIds.length) {
-      throw errorHandler(
-        500,
-        "Nem todas as funções com IDs informados foram encontradas."
-      );
-    }
-
-    await usuario.addFuncoes(funcoes);
   } catch (err) {
     throw errorHandler(500, err.message);
   }

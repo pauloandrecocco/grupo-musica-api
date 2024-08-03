@@ -1,9 +1,12 @@
+// Services
+import FuncaoService from "./funcao.service.js";
+
 // Repositories
 import UsuarioRepository from "../repositories/usuario.repository.js";
 
 // Utils
 import { encryptPassword } from "../utils/password.js";
-import { usuarioReturnDTO } from "../utils/dto.js";
+import { usuarioReturnDTO, funcoesReturnDTO } from "../utils/dto.js";
 
 async function createUsuario(usuario) {
   const hashedSenha = await encryptPassword(usuario.senha);
@@ -20,9 +23,12 @@ async function listUsuarios() {
   return usuarios.map((usuario) => usuarioReturnDTO(usuario));
 }
 
-async function getUsuario(usuarioId) {
+async function getUsuario(usuarioId, withDTO = true) {
   const usuario = await UsuarioRepository.getUsuario(usuarioId);
-  return usuarioReturnDTO(usuario);
+  if (withDTO) {
+    return usuarioReturnDTO(usuario);
+  }
+  return usuario;
 }
 
 async function deleteUsuario(usuarioId) {
@@ -45,6 +51,29 @@ async function getUsuarioByEmail(email) {
   return await UsuarioRepository.getUsuarioByEmail(email);
 }
 
+async function addFunction(usuarioId, funcaoId) {
+  const usuario = await getUsuario(usuarioId, false);
+  const funcao = await FuncaoService.getFuncao(funcaoId);
+  await usuario.addFuncoes([funcao]);
+
+  return getUsuario(usuarioId);
+}
+
+async function listFunctions(usuarioId) {
+  const usuario = await getUsuario(usuarioId, false);
+  const funcoes = await usuario.getFuncoes();
+
+  return funcoesReturnDTO(funcoes);
+}
+
+async function removeFunction(usuarioId, funcaoId) {
+  const usuario = await getUsuario(usuarioId, false);
+  const funcao = await FuncaoService.getFuncao(funcaoId);
+  await usuario.removeFuncoes([funcao]);
+
+  return getUsuario(usuarioId);
+}
+
 export default {
   createUsuario,
   listUsuarios,
@@ -52,4 +81,7 @@ export default {
   deleteUsuario,
   updateUsuario,
   getUsuarioByEmail,
+  addFunction,
+  removeFunction,
+  listFunctions,
 };
