@@ -37,6 +37,12 @@ router.delete(
   UsuarioController.removeFunctionFromUsuario
 );
 
+router.get(
+  "/:usuarioId/escalas",
+  userAuthMiddleware,
+  UsuarioController.listEscalasByUsuario
+);
+
 // Error handling
 router.use((err, req, res, next) => {
   res.status(err.code ?? 500).send({ error: err.message });

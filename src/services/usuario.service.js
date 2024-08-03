@@ -7,6 +7,7 @@ import UsuarioRepository from "../repositories/usuario.repository.js";
 // Utils
 import { encryptPassword } from "../utils/password.js";
 import {
+  escalasReturnDTO,
   usuarioReturnDTO,
   usuariosReturnDTO,
   funcoesReturnDTO,
@@ -75,6 +76,13 @@ async function removeFunctionFromUsuario(usuarioId, funcaoId) {
   return getUsuario(usuarioId);
 }
 
+async function listEscalasByUsuario(usuarioId) {
+  const usuario = await getUsuario(usuarioId, false);
+  const escalas = await usuario.getEscalas();
+
+  return escalasReturnDTO(escalas);
+}
+
 export default {
   createUsuario,
   listUsuarios,
@@ -85,4 +93,5 @@ export default {
   addFunctionToUsuario,
   listFunctionsByUsuario,
   removeFunctionFromUsuario,
+  listEscalasByUsuario,
 };
