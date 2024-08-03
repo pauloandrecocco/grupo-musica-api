@@ -1,16 +1,20 @@
 // Repositories
 import EscalaRepository from "../repositories/escala.repository.js";
 
+// Utils
+import { escalaReturnDTO, escalasReturnDTO } from "../utils/dto.js";
+
 async function createEscala(escala) {
-  return await EscalaRepository.insertEscala(escala);
+  return escalaReturnDTO(await EscalaRepository.insertEscala(escala));
 }
 
 async function listEscalas() {
-  return await EscalaRepository.listEscalas();
+  return escalasReturnDTO(await EscalaRepository.listEscalas());
 }
 
-async function getEscala(escalaId) {
-  return await EscalaRepository.getEscala(escalaId);
+async function getEscala(escalaId, withDTO = true) {
+  const escala = await EscalaRepository.getEscala(escalaId);
+  return withDTO ? escalaReturnDTO(escala) : escala;
 }
 
 async function deleteEscala(escalaId) {
@@ -18,7 +22,7 @@ async function deleteEscala(escalaId) {
 }
 
 async function updateEscala(escalaId, escala) {
-  return await EscalaRepository.updateEscala(escalaId, escala);
+  return escalaReturnDTO(await EscalaRepository.updateEscala(escalaId, escala));
 }
 
 export default {

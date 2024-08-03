@@ -2,7 +2,7 @@
 import MusicaRepository from "../repositories/musica.repository.js";
 
 // Utils
-import { musicaReturnDTO } from "../utils/dto.js";
+import { musicaReturnDTO, musicasReturnDTO } from "../utils/dto.js";
 
 async function createMusica(musica) {
   return musicaReturnDTO(await MusicaRepository.insertMusica(musica));
@@ -17,7 +17,7 @@ async function listMusicas({ nome, autor, tema, tonalidade }) {
   };
 
   const musicas = await MusicaRepository.listMusicas(filterParams);
-  return musicas.map((musica) => musicaReturnDTO(musica));
+  return musicasReturnDTO(musicas);
 }
 
 async function getMusica(musicaId, withDTO = true) {

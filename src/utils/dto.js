@@ -36,3 +36,21 @@ export const musicaReturnDTO = (musica) => {
     ...(musica?.tonalidade && { tonalidade: musica.tonalidade }),
   };
 };
+
+export const musicasReturnDTO = (musicas) => {
+  return musicas.map((musica) => musicaReturnDTO(musica));
+};
+
+// Escala
+export const escalaReturnDTO = (escala) => {
+  return {
+    escalaId: escala.escalaId,
+    data: escala.data,
+    ...(escala?.musicas && { musicas: musicasReturnDTO(escala.musicas) }),
+    ...(escala?.usuarios && { usuarios: usuariosReturnDTO(escala.usuarios) }),
+  };
+};
+
+export const escalasReturnDTO = (escalas) => {
+  return escalas.map((escala) => escalaReturnDTO(escala));
+};
