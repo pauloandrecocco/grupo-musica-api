@@ -17,6 +17,12 @@ router.get("/:funcaoId", userAuthMiddleware, FuncaoController.getFuncao);
 router.delete("/:funcaoId", adminAuthMiddleware, FuncaoController.deleteFuncao);
 router.put("/:funcaoId", adminAuthMiddleware, FuncaoController.updateFuncao);
 
+router.get(
+  "/:funcaoId/usuarios",
+  userAuthMiddleware,
+  FuncaoController.listUsuariosByFuncao
+);
+
 // Error handling
 router.use((err, req, res, next) => {
   res.status(err.code ?? 500).send({ error: err.message });

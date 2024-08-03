@@ -57,10 +57,22 @@ async function updateFuncao(req, res, next) {
   }
 }
 
+async function listUsuariosByFuncao(req, res, next) {
+  const { funcaoId } = req.params;
+
+  try {
+    res.send(await FuncaoService.listUsuariosByFuncao(funcaoId));
+    logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export default {
   createFuncao,
   listFuncoes,
   getFuncao,
   deleteFuncao,
   updateFuncao,
+  listUsuariosByFuncao,
 };

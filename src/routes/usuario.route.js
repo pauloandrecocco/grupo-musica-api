@@ -24,17 +24,17 @@ router.put("/:usuarioId", userAuthMiddleware, UsuarioController.updateUsuario);
 router.post(
   "/:usuarioId/funcoes/:funcaoId",
   adminAuthMiddleware,
-  UsuarioController.addFunction
+  UsuarioController.addFunctionToUsuario
 );
 router.get(
   "/:usuarioId/funcoes",
   userAuthMiddleware,
-  UsuarioController.listFunctions
+  UsuarioController.listFunctionsByUsuario
 );
 router.delete(
   "/:usuarioId/funcoes/:funcaoId",
   adminAuthMiddleware,
-  UsuarioController.removeFunction
+  UsuarioController.removeFunctionFromUsuario
 );
 
 // Error handling

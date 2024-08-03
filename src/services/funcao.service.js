@@ -1,16 +1,24 @@
 // Repositories
 import FuncaoRepository from "../repositories/funcao.repository.js";
 
+// Utils
+import {
+  usuarioReturnDTO,
+  funcaoReturnDTO,
+  funcoesReturnDTO,
+} from "../utils/dto.js";
+
 async function createFuncao(funcao) {
-  return await FuncaoRepository.insertFuncao(funcao);
+  return funcaoReturnDTO(await FuncaoRepository.insertFuncao(funcao));
 }
 
 async function listFuncoes() {
-  return await FuncaoRepository.listFuncoes();
+  return funcoesReturnDTO(await FuncaoRepository.listFuncoes());
 }
 
-async function getFuncao(funcaoId) {
-  return await FuncaoRepository.getFuncao(funcaoId);
+async function getFuncao(funcaoId, withDTO = true) {
+  const funcao = await FuncaoRepository.getFuncao(funcaoId);
+  return withDTO ? funcaoReturnDTO(funcao) : funcao;
 }
 
 async function deleteFuncao(funcaoId) {
@@ -18,7 +26,14 @@ async function deleteFuncao(funcaoId) {
 }
 
 async function updateFuncao(funcaoId, funcao) {
-  return await FuncaoRepository.updateFuncao(funcaoId, funcao);
+  return funcaoReturnDTO(await FuncaoRepository.updateFuncao(funcaoId, funcao));
+}
+
+async function listUsuariosByFuncao(funcaoId) {
+  const funcao = await getFuncao(funcaoId, false);
+  const usuarios = await funcao.getUsuarios();
+
+  return usuarios.map((usuario) => usuarioReturnDTO(usuario));
 }
 
 export default {
@@ -27,4 +42,5 @@ export default {
   getFuncao,
   deleteFuncao,
   updateFuncao,
+  listUsuariosByFuncao,
 };

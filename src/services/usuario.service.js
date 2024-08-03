@@ -25,10 +25,7 @@ async function listUsuarios() {
 
 async function getUsuario(usuarioId, withDTO = true) {
   const usuario = await UsuarioRepository.getUsuario(usuarioId);
-  if (withDTO) {
-    return usuarioReturnDTO(usuario);
-  }
-  return usuario;
+  return withDTO ? usuarioReturnDTO(usuario) : usuario;
 }
 
 async function deleteUsuario(usuarioId) {
@@ -51,7 +48,7 @@ async function getUsuarioByEmail(email) {
   return await UsuarioRepository.getUsuarioByEmail(email);
 }
 
-async function addFunction(usuarioId, funcaoId) {
+async function addFunctionToUsuario(usuarioId, funcaoId) {
   const usuario = await getUsuario(usuarioId, false);
   const funcao = await FuncaoService.getFuncao(funcaoId);
   await usuario.addFuncoes([funcao]);
@@ -59,14 +56,14 @@ async function addFunction(usuarioId, funcaoId) {
   return getUsuario(usuarioId);
 }
 
-async function listFunctions(usuarioId) {
+async function listFunctionsByUsuario(usuarioId) {
   const usuario = await getUsuario(usuarioId, false);
   const funcoes = await usuario.getFuncoes();
 
   return funcoesReturnDTO(funcoes);
 }
 
-async function removeFunction(usuarioId, funcaoId) {
+async function removeFunctionFromUsuario(usuarioId, funcaoId) {
   const usuario = await getUsuario(usuarioId, false);
   const funcao = await FuncaoService.getFuncao(funcaoId);
   await usuario.removeFuncoes([funcao]);
@@ -81,7 +78,7 @@ export default {
   deleteUsuario,
   updateUsuario,
   getUsuarioByEmail,
-  addFunction,
-  removeFunction,
-  listFunctions,
+  addFunctionToUsuario,
+  listFunctionsByUsuario,
+  removeFunctionFromUsuario,
 };

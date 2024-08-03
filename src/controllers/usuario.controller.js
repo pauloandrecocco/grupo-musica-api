@@ -68,33 +68,35 @@ async function updateUsuario(req, res, next) {
   }
 }
 
-async function addFunction(req, res, next) {
+async function addFunctionToUsuario(req, res, next) {
   const { usuarioId, funcaoId } = req.params;
 
   try {
-    res.send(await UsuarioService.addFunction(usuarioId, funcaoId));
+    res.send(await UsuarioService.addFunctionToUsuario(usuarioId, funcaoId));
     logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
   } catch (err) {
     next(err);
   }
 }
 
-async function listFunctions(req, res, next) {
+async function listFunctionsByUsuario(req, res, next) {
   const { usuarioId } = req.params;
 
   try {
-    res.send(await UsuarioService.listFunctions(usuarioId));
+    res.send(await UsuarioService.listFunctionsByUsuario(usuarioId));
     logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
   } catch (err) {
     next(err);
   }
 }
 
-async function removeFunction(req, res, next) {
+async function removeFunctionFromUsuario(req, res, next) {
   const { usuarioId, funcaoId } = req.params;
 
   try {
-    res.send(await UsuarioService.removeFunction(usuarioId, funcaoId));
+    res.send(
+      await UsuarioService.removeFunctionFromUsuario(usuarioId, funcaoId)
+    );
     logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
   } catch (err) {
     next(err);
@@ -107,7 +109,7 @@ export default {
   getUsuario,
   deleteUsuario,
   updateUsuario,
-  addFunction,
-  removeFunction,
-  listFunctions,
+  addFunctionToUsuario,
+  listFunctionsByUsuario,
+  removeFunctionFromUsuario,
 };
