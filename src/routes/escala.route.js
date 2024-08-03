@@ -33,6 +33,22 @@ router.delete(
   EscalaController.removeUsuarioFromEscala
 );
 
+router.post(
+  "/:escalaId/musicas/:musicaId",
+  adminAuthMiddleware,
+  EscalaController.addMusicaToEscala
+);
+router.get(
+  "/:escalaId/musicas",
+  userAuthMiddleware,
+  EscalaController.listMusicasByEscala
+);
+router.delete(
+  "/:escalaId/musicas/:musicaId",
+  adminAuthMiddleware,
+  EscalaController.removeMusicaFromEscala
+);
+
 // Error handling
 router.use((err, req, res, next) => {
   res.status(err.code ?? 500).send({ error: err.message });

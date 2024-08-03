@@ -90,6 +90,39 @@ async function removeUsuarioFromEscala(req, res, next) {
   }
 }
 
+async function addMusicaToEscala(req, res, next) {
+  const { escalaId, musicaId } = req.params;
+
+  try {
+    res.send(await EscalaService.addMusicaToEscala(escalaId, musicaId));
+    logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function listMusicasByEscala(req, res, next) {
+  const { escalaId } = req.params;
+
+  try {
+    res.send(await EscalaService.listMusicasByEscala(escalaId));
+    logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function removeMusicaFromEscala(req, res, next) {
+  const { escalaId, musicaId } = req.params;
+
+  try {
+    res.send(await EscalaService.removeMusicaFromEscala(escalaId, musicaId));
+    logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export default {
   createEscala,
   listEscalas,
@@ -99,4 +132,7 @@ export default {
   addUsuarioToEscala,
   listUsuariosByEscala,
   removeUsuarioFromEscala,
+  addMusicaToEscala,
+  listMusicasByEscala,
+  removeMusicaFromEscala,
 };

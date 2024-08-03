@@ -1,4 +1,5 @@
 // Services
+import MusicaService from "./musica.service.js";
 import UsuarioService from "./usuario.service.js";
 
 // Repositories
@@ -8,6 +9,7 @@ import EscalaRepository from "../repositories/escala.repository.js";
 import {
   escalaReturnDTO,
   escalasReturnDTO,
+  musicasReturnDTO,
   usuariosReturnDTO,
 } from "../utils/dto.js";
 
@@ -55,6 +57,29 @@ async function removeUsuarioFromEscala(escalaId, usuarioId) {
   return getEscala(escalaId);
 }
 
+async function addMusicaToEscala(escalaId, musicaId) {
+  const escala = await getEscala(escalaId, false);
+  const musica = await MusicaService.getMusica(musicaId, false);
+  await escala.addMusicas([musica]);
+
+  return getEscala(escalaId);
+}
+
+async function listMusicasByEscala(escalaId) {
+  const escala = await getEscala(escalaId, false);
+  const musicas = await escala.getMusicas();
+
+  return musicasReturnDTO(musicas);
+}
+
+async function removeMusicaFromEscala(escalaId, musicaId) {
+  const escala = await getEscala(escalaId, false);
+  const musica = await MusicaService.getMusica(musicaId, false);
+  await escala.removeMusicas([musica]);
+
+  return getEscala(escalaId);
+}
+
 export default {
   createEscala,
   listEscalas,
@@ -64,4 +89,7 @@ export default {
   addUsuarioToEscala,
   listUsuariosByEscala,
   removeUsuarioFromEscala,
+  addMusicaToEscala,
+  listMusicasByEscala,
+  removeMusicaFromEscala,
 };
