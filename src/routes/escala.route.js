@@ -17,6 +17,22 @@ router.get("/:escalaId", userAuthMiddleware, EscalaController.getEscala);
 router.delete("/:escalaId", adminAuthMiddleware, EscalaController.deleteEscala);
 router.put("/:escalaId", adminAuthMiddleware, EscalaController.updateEscala);
 
+router.post(
+  "/:escalaId/usuarios/:usuarioId",
+  adminAuthMiddleware,
+  EscalaController.addUsuarioToEscala
+);
+router.get(
+  "/:escalaId/usuarios",
+  userAuthMiddleware,
+  EscalaController.listUsuariosByEscala
+);
+router.delete(
+  "/:escalaId/usuarios/:usuarioId",
+  adminAuthMiddleware,
+  EscalaController.removeUsuarioFromEscala
+);
+
 // Error handling
 router.use((err, req, res, next) => {
   res.status(err.code ?? 500).send({ error: err.message });
