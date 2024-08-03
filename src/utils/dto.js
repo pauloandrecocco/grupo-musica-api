@@ -1,3 +1,4 @@
+// Usuário
 export const usuarioReturnDTO = (usuario) => {
   return {
     usuarioId: usuario.usuarioId,
@@ -8,6 +9,7 @@ export const usuarioReturnDTO = (usuario) => {
   };
 };
 
+// Função
 export const funcaoReturnDTO = (funcao) => {
   return {
     funcaoId: funcao.funcaoId,
@@ -18,4 +20,15 @@ export const funcaoReturnDTO = (funcao) => {
 
 export const funcoesReturnDTO = (funcoes) => {
   return funcoes.map((funcao) => funcaoReturnDTO(funcao));
+};
+
+// Música
+export const musicaReturnDTO = (musica) => {
+  return {
+    musicaId: musica.musicaId,
+    nome: musica.nome,
+    ...(musica?.autor && { autor: musica.autor }),
+    ...(musica?.tema && { tema: musica.tema }),
+    ...(musica?.tonalidade && { tonalidade: musica.tonalidade }),
+  };
 };

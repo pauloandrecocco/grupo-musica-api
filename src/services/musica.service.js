@@ -1,16 +1,21 @@
 // Repositories
 import MusicaRepository from "../repositories/musica.repository.js";
 
+// Utils
+import { musicaReturnDTO } from "../utils/dto.js";
+
 async function createMusica(musica) {
-  return await MusicaRepository.insertMusica(musica);
+  return musicaReturnDTO(await MusicaRepository.insertMusica(musica));
 }
 
 async function listMusicas() {
-  return await MusicaRepository.listMusicas();
+  const musicas = await MusicaRepository.listMusicas();
+  return musicas.map((musica) => musicaReturnDTO(musica));
 }
 
-async function getMusica(musicaId) {
-  return await MusicaRepository.getMusica(musicaId);
+async function getMusica(musicaId, withDTO = true) {
+  const musica = await MusicaRepository.getMusica(musicaId);
+  return withDTO ? musicaReturnDTO(musica) : musica;
 }
 
 async function deleteMusica(musicaId) {
@@ -18,7 +23,7 @@ async function deleteMusica(musicaId) {
 }
 
 async function updateMusica(musicaId, musica) {
-  return await MusicaRepository.updateMusica(musicaId, musica);
+  return musicaReturnDTO(await MusicaRepository.updateMusica(musicaId, musica));
 }
 
 export default {

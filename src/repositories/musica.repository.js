@@ -22,9 +22,7 @@ async function listMusicas() {
 
 async function getMusica(musicaId) {
   try {
-    return await Musica.findByPk(musicaId, {
-      raw: true,
-    });
+    return await Musica.findByPk(musicaId);
   } catch (err) {
     throw errorHandler(500, err.message);
   }
