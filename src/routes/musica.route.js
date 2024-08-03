@@ -17,6 +17,12 @@ router.get("/:musicaId", userAuthMiddleware, MusicaController.getMusica);
 router.delete("/:musicaId", adminAuthMiddleware, MusicaController.deleteMusica);
 router.put("/:musicaId", adminAuthMiddleware, MusicaController.updateMusica);
 
+router.get(
+  "/:musicaId/escalas",
+  adminAuthMiddleware,
+  MusicaController.listEscalasByMusica
+);
+
 // Error handling
 router.use((err, req, res, next) => {
   res.status(err.code ?? 500).send({ error: err.message });
