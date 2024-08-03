@@ -50,7 +50,7 @@ async function getUsuarioByEmail(email) {
 
 async function addFunctionToUsuario(usuarioId, funcaoId) {
   const usuario = await getUsuario(usuarioId, false);
-  const funcao = await FuncaoService.getFuncao(funcaoId);
+  const funcao = await FuncaoService.getFuncao(funcaoId, false);
   await usuario.addFuncoes([funcao]);
 
   return getUsuario(usuarioId);
@@ -65,7 +65,7 @@ async function listFunctionsByUsuario(usuarioId) {
 
 async function removeFunctionFromUsuario(usuarioId, funcaoId) {
   const usuario = await getUsuario(usuarioId, false);
-  const funcao = await FuncaoService.getFuncao(funcaoId);
+  const funcao = await FuncaoService.getFuncao(funcaoId, false);
   await usuario.removeFuncoes([funcao]);
 
   return getUsuario(usuarioId);
