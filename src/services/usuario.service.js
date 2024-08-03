@@ -1,8 +1,16 @@
 // Repositories
 import UsuarioRepository from "../repositories/usuario.repository.js";
 
+// Utils
+import { encryptPassword } from "../utils/password.js";
+
 async function createUsuario(usuario) {
-  return await UsuarioRepository.insertUsuario(usuario);
+  const hashedSenha = await encryptPassword(usuario.senha);
+
+  return await UsuarioRepository.insertUsuario({
+    ...usuario,
+    senha: hashedSenha,
+  });
 }
 
 async function listUsuarios() {
@@ -18,6 +26,10 @@ async function deleteUsuario(usuarioId) {
 }
 
 async function updateUsuario(usuarioId, usuario) {
+  if (usuario?.senha) {
+    usuario.senha = await encryptPassword(usuario.senha);
+  }
+
   return await UsuarioRepository.updateUsuario(usuarioId, usuario);
 }
 

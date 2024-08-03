@@ -3,6 +3,7 @@ import UsuarioService from "../services/usuario.service.js";
 
 // Utils
 import { validateCredentials, areSuperuserCredentials } from "../utils/auth.js";
+import { comparePassword } from "../utils/password.js";
 
 export const adminAuthMiddleware = async (req, res, next) => {
   const { username, password, errorMessage } = validateCredentials(
@@ -37,7 +38,7 @@ export const userAuthMiddleware = async (req, res, next) => {
 
   const { senha, ...usuario } =
     (await UsuarioService.getUsuarioByEmail(username)) || {};
-  if (username === usuario.email && password === senha) {
+  if (username === usuario.email && (await comparePassword(password, senha))) {
     req.user = usuario;
     return next();
   }
