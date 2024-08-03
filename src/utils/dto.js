@@ -46,6 +46,7 @@ export const escalaReturnDTO = (escala) => {
   return {
     escalaId: escala.escalaId,
     data: escala.data,
+    ...(escala?.descricao && { descricao: escala.descricao }),
     ...(escala?.musicas && { musicas: musicasReturnDTO(escala.musicas) }),
     ...(escala?.usuarios && { usuarios: usuariosReturnDTO(escala.usuarios) }),
   };

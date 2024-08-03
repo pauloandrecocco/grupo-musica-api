@@ -17,6 +17,10 @@ const Escala = sequelize.define(
       type: Sequelize.DATEONLY,
       allowNull: false,
     },
+    descricao: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
   },
   { underscore: true }
 );
