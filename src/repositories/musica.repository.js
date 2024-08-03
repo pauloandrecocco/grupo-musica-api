@@ -12,9 +12,11 @@ async function insertMusica(musica) {
   }
 }
 
-async function listMusicas() {
+async function listMusicas(filterParams) {
   try {
-    return await Musica.findAll();
+    return await Musica.findAll({
+      where: filterParams,
+    });
   } catch (err) {
     throw errorHandler(500, err.message);
   }

@@ -8,8 +8,15 @@ async function createMusica(musica) {
   return musicaReturnDTO(await MusicaRepository.insertMusica(musica));
 }
 
-async function listMusicas() {
-  const musicas = await MusicaRepository.listMusicas();
+async function listMusicas({ nome, autor, tema, tonalidade }) {
+  const filterParams = {
+    ...(nome && { nome }),
+    ...(autor && { autor }),
+    ...(tema && { tema }),
+    ...(tonalidade && { tonalidade }),
+  };
+
+  const musicas = await MusicaRepository.listMusicas(filterParams);
   return musicas.map((musica) => musicaReturnDTO(musica));
 }
 

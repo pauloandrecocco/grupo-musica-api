@@ -13,8 +13,10 @@ async function createMusica(req, res, next) {
 }
 
 async function listMusicas(req, res, next) {
+  const filterParams = req.query;
+
   try {
-    res.send(await MusicaService.listMusicas());
+    res.send(await MusicaService.listMusicas(filterParams));
     logger.info(`${req.method} ${req.baseUrl} | Success`);
   } catch (err) {
     next(err);
