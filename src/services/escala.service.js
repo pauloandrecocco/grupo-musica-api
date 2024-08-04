@@ -17,10 +17,11 @@ async function createEscala(escala) {
   return escalaReturnDTO(await EscalaRepository.insertEscala(escala));
 }
 
-async function listEscalas({ dataInicio, dataFim }) {
+async function listEscalas({ dataInicio, dataFim, ordem }) {
   const filterParams = {
     ...(dataInicio && { dataInicio }),
     ...(dataFim && { dataFim }),
+    ...(ordem && { ordem }),
   };
 
   return escalasReturnDTO(await EscalaRepository.listEscalas(filterParams));

@@ -14,7 +14,7 @@ async function insertFuncao(funcao) {
 
 async function listFuncoes() {
   try {
-    return await Funcao.findAll();
+    return await Funcao.findAll({ order: [["nome", "ASC"]] });
   } catch (err) {
     throw errorHandler(500, err.message);
   }

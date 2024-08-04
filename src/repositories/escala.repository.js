@@ -14,7 +14,7 @@ async function insertEscala(escala) {
   }
 }
 
-async function listEscalas({ dataInicio, dataFim }) {
+async function listEscalas({ dataInicio, dataFim, ordem = "ASC" }) {
   try {
     return await Escala.findAll({
       include: ["musicas", "usuarios"],
@@ -26,6 +26,7 @@ async function listEscalas({ dataInicio, dataFim }) {
           },
         },
       }),
+      order: [["data", ordem]],
     });
   } catch (err) {
     throw errorHandler(500, err.message);

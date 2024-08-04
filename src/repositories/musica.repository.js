@@ -16,6 +16,7 @@ async function listMusicas(filterParams) {
   try {
     return await Musica.findAll({
       where: filterParams,
+      order: [["nome", "ASC"]],
     });
   } catch (err) {
     throw errorHandler(500, err.message);

@@ -14,7 +14,9 @@ async function insertUsuario(usuario) {
 
 async function listUsuarios() {
   try {
-    return await Usuario.findAll();
+    return await Usuario.findAll({
+      order: [["nome", "ASC"]],
+    });
   } catch (err) {
     throw errorHandler(500, err.message);
   }
