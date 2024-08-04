@@ -61,9 +61,10 @@ async function updateMusica(req, res, next) {
 
 async function listEscalasByMusica(req, res, next) {
   const { musicaId } = req.params;
+  const filterParams = req.query;
 
   try {
-    res.send(await MusicaService.listEscalasByMusica(musicaId));
+    res.send(await MusicaService.listEscalasByMusica(musicaId, filterParams));
     logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
   } catch (err) {
     next(err);

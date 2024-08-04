@@ -106,13 +106,16 @@ async function removeFunctionFromUsuario(req, res, next) {
 async function listEscalasByUsuario(req, res, next) {
   const { usuarioId } = req.params;
   const reqUsuario = req.user;
+  const filterParams = req.query;
 
   try {
     if (!isSuperuser(reqUsuario) && !isSameUser(reqUsuario, usuarioId)) {
       throw errorHandler(403, "Forbidden User");
     }
 
-    res.send(await UsuarioService.listEscalasByUsuario(usuarioId));
+    res.send(
+      await UsuarioService.listEscalasByUsuario(usuarioId, filterParams)
+    );
     logger.info(`${req.method} ${req.baseUrl}/:id | Success`);
   } catch (err) {
     next(err);

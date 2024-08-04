@@ -1,3 +1,5 @@
+import { Op } from "sequelize";
+
 // Services
 import FuncaoService from "./funcao.service.js";
 
@@ -76,9 +78,22 @@ async function removeFunctionFromUsuario(usuarioId, funcaoId) {
   return getUsuario(usuarioId);
 }
 
-async function listEscalasByUsuario(usuarioId) {
+async function listEscalasByUsuario(
+  usuarioId,
+  { dataInicio, dataFim, ordem = "ASC" }
+) {
   const usuario = await getUsuario(usuarioId, false);
-  const escalas = await usuario.getEscalas();
+  const escalas = await usuario.getEscalas({
+    ...((dataInicio || dataFim) && {
+      where: {
+        data: {
+          ...(dataInicio && { [Op.gte]: dataInicio }),
+          ...(dataFim && { [Op.lte]: dataFim }),
+        },
+      },
+    }),
+    order: [["data", ordem]],
+  });
 
   return escalasReturnDTO(escalas);
 }

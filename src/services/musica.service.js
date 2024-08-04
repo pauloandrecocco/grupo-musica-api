@@ -1,3 +1,5 @@
+import { Op } from "sequelize";
+
 // Repositories
 import MusicaRepository from "../repositories/musica.repository.js";
 
@@ -37,9 +39,22 @@ async function updateMusica(musicaId, musica) {
   return musicaReturnDTO(await MusicaRepository.updateMusica(musicaId, musica));
 }
 
-async function listEscalasByMusica(musicaId) {
+async function listEscalasByMusica(
+  musicaId,
+  { dataInicio, dataFim, ordem = "ASC" }
+) {
   const musica = await getMusica(musicaId, false);
-  const escalas = await musica.getEscalas();
+  const escalas = await musica.getEscalas({
+    ...((dataInicio || dataFim) && {
+      where: {
+        data: {
+          ...(dataInicio && { [Op.gte]: dataInicio }),
+          ...(dataFim && { [Op.lte]: dataFim }),
+        },
+      },
+    }),
+    order: [["data", ordem]],
+  });
 
   return escalasReturnDTO(escalas);
 }
