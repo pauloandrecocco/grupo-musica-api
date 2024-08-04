@@ -17,8 +17,13 @@ async function createEscala(escala) {
   return escalaReturnDTO(await EscalaRepository.insertEscala(escala));
 }
 
-async function listEscalas() {
-  return escalasReturnDTO(await EscalaRepository.listEscalas());
+async function listEscalas({ dataInicio, dataFim }) {
+  const filterParams = {
+    ...(dataInicio && { dataInicio }),
+    ...(dataFim && { dataFim }),
+  };
+
+  return escalasReturnDTO(await EscalaRepository.listEscalas(filterParams));
 }
 
 async function getEscala(escalaId, withDTO = true) {

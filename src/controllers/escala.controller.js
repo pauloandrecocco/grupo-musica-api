@@ -13,8 +13,10 @@ async function createEscala(req, res, next) {
 }
 
 async function listEscalas(req, res, next) {
+  const filterParams = req.query;
+
   try {
-    res.send(await EscalaService.listEscalas());
+    res.send(await EscalaService.listEscalas(filterParams));
     logger.info(`${req.method} ${req.baseUrl} | Success`);
   } catch (err) {
     next(err);

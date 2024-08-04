@@ -1,3 +1,5 @@
+import { Op } from "sequelize";
+
 // Models
 import { Escala } from "../models/index.js";
 
@@ -12,9 +14,19 @@ async function insertEscala(escala) {
   }
 }
 
-async function listEscalas() {
+async function listEscalas({ dataInicio, dataFim }) {
   try {
-    return await Escala.findAll({ include: ["musicas", "usuarios"] });
+    return await Escala.findAll({
+      include: ["musicas", "usuarios"],
+      ...((dataInicio || dataFim) && {
+        where: {
+          data: {
+            ...(dataInicio && { [Op.gte]: dataInicio }),
+            ...(dataFim && { [Op.lte]: dataFim }),
+          },
+        },
+      }),
+    });
   } catch (err) {
     throw errorHandler(500, err.message);
   }
