@@ -22,10 +22,8 @@ export const uuidsValidation = (uuidsObject) => {
   }
 };
 
-export const filterParamsValidation = (filterParams) => {
+export const filterParamsValidation = ({ dataInicio, dataFim, ordem }) => {
   const errors = [];
-
-  const { dataInicio, dataFim, ordem } = filterParams;
 
   if (dataInicio && !commonRegex.data.test(dataInicio)) {
     errors.push("Parâmetro 'dataInicio' no formato inválido");
