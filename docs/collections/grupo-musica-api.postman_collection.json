@@ -1,0 +1,1245 @@
+{
+	"info": {
+		"_postman_id": "e82cd34b-8d4f-408d-9503-47bb535d579d",
+		"name": "grupo-musica-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21577487"
+	},
+	"item": [
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Paulo André\",\r\n    \"email\": \"teste@teste.com\",\r\n    \"senha\": \"senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Paulo André C.\",\r\n    \"telefone\": \"9998765432\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Função",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}/funcoes/{{funcaoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}",
+								"funcoes",
+								"{{funcaoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Funções",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}/funcoes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}",
+								"funcoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Função",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}/funcoes/{{funcaoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}",
+								"funcoes",
+								"{{funcaoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Escalas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuarioId}}/escalas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuarioId}}",
+								"escalas"
+							],
+							"query": [
+								{
+									"key": "dataInicio",
+									"value": "2024-07-29",
+									"disabled": true
+								},
+								{
+									"key": "dataFim",
+									"value": "2024-07-31",
+									"disabled": true
+								},
+								{
+									"key": "ordem",
+									"value": "DESC",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta relativa aos endpoints de usuários.\n\n---\n\n### Autenticação e Autorização\n\nTodas as rotas da aplicação necessitam de autenticação, que é feita por meio de Basic Auth. Para acessar as rotas é necessário ser um usuário cadastrado na aplicação ou ser um usuário administrador.\n\nRotas acessíveis apenas para usuário administrador:\n\n- Criar\n    \n- Deletar\n    \n- Adicionar Função\n    \n- Remover Função\n    \n\nAs rotas \"Atualizar\" e \"Listar Escalas\" podem ser acessadas apenas pelo usuário administrador e pelo próprio usuário cadastrado.\n\n---\n\n### CRUD\n\n##### Campos para Criação de Usuário\n\n- nome: string\n    \n- email: string\n    \n- senha: string\n    \n- telefone (opcional): string\n    \n\n##### Campos para Atualização de Usuário\n\n- nome (opcional): string\n    \n- email (opcional): string\n    \n- senha (opcional): string\n    \n- telefone (opcional): string\n    \n\n---\n\n### Parâmetros para filtragem\n\nA rota \"Listar Escalas\" pode receber os seguintes parâmetros como _query params_ para filtrar os resultados:\n\n- dataInicio (formato AAAA-MM-DD)\n    \n- dataFim (formato AAAA-MM-DD)\n    \n- ordem (\"ASC\" ou \"DESC\")"
+		},
+		{
+			"name": "Funções",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Baixo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/funcoes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcoes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcoes/{{funcaoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcoes",
+								"{{funcaoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Baixo Elétrico\",\r\n    \"descricao\": \"Instrumentista toca baixo elétrico\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/funcoes/{{funcaoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcoes",
+								"{{funcaoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcoes/{{funcaoId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcoes",
+								"{{funcaoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuários",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcoes/{{funcaoId}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcoes",
+								"{{funcaoId}}",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta relativa aos endpoints de funções.\n\n---\n\n### Autenticação e Autorização\n\nTodas as rotas da aplicação necessitam de autenticação, que é feita por meio de Basic Auth. Para acessar as rotas é necessário ser um usuário cadastrado na aplicação ou ser um usuário administrador.\n\nRotas acessíveis apenas para usuário administrador:\n\n- Criar\n    \n- Deletar\n    \n- Atualizar\n    \n\n---\n\n### CRUD\n\n##### Campos para Criação de Função\n\n- nome: string\n    \n- descricao (opcional): string\n    \n    \n\n##### Campos para Atualização de Função\n\n- nome (opcional): string\n    \n- descricao (opcional): string\n"
+		},
+		{
+			"name": "Músicas",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Música 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/musicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/musicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"musicas"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Música 1",
+									"disabled": true
+								},
+								{
+									"key": "autor",
+									"value": "Autor 1",
+									"disabled": true
+								},
+								{
+									"key": "tema",
+									"value": "Tema 1",
+									"disabled": true
+								},
+								{
+									"key": "tonalidade",
+									"value": "G",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/musicas/{{musicaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"musicas",
+								"{{musicaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"autor\": \"Autor 1\",\r\n    \"tema\": \"Tema 1\",\r\n    \"tonalidade\": \"G\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/musicas/{{musicaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"musicas",
+								"{{musicaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/musicas/{{musicaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"musicas",
+								"{{musicaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Escalas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/musicas/{{musicaId}}/escalas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"musicas",
+								"{{musicaId}}",
+								"escalas"
+							],
+							"query": [
+								{
+									"key": "dataInicio",
+									"value": "2024-07-29",
+									"disabled": true
+								},
+								{
+									"key": "dataFim",
+									"value": "2024-07-31",
+									"disabled": true
+								},
+								{
+									"key": "ordem",
+									"value": "DESC",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta relativa aos endpoints de músicas.\n\n---\n\n### Autenticação e Autorização\n\nTodas as rotas da aplicação necessitam de autenticação, que é feita por meio de Basic Auth. Para acessar as rotas é necessário ser um usuário cadastrado na aplicação ou ser um usuário administrador.\n\nRotas acessíveis apenas para usuário administrador:\n\n- Criar\n    \n- Deletar\n    \n- Atualizar\n    \n- Listar Escalas\n    \n\n---\n\n### CRUD\n\n##### Campos para Criação de Música\n\n- nome: string\n    \n- autor (opcional): string\n    \n- tema (opcional): string\n    \n- tonalidade (opcional): string\n    \n\n##### Campos para Atualização de Música\n\n- nome (opcional): string\n    \n- autor (opcional): string\n    \n- tema (opcional): string\n    \n- tonalidade (opcional): string\n    \n\n---\n\n### Parâmetros para filtragem\n\n---\n\n### Parâmetros para filtragem\n\nA rota \"Listar\" pode receber os seguintes parâmetros como _query params_ para filtrar os resultados:\n\n- nome\n    \n- autor\n\n- tema\n    \n- tonalidade\n\nA rota \"Listar Escalas\" pode receber os seguintes parâmetros como _query params_ para filtrar os resultados:\n\n- dataInicio (formato AAAA-MM-DD)\n    \n- dataFim (formato AAAA-MM-DD)\n    \n- ordem (\"ASC\" ou \"DESC\")"
+		},
+		{
+			"name": "Escalas",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2024-07-28\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/escalas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas"
+							],
+							"query": [
+								{
+									"key": "dataInicio",
+									"value": "2024-07-29",
+									"disabled": true
+								},
+								{
+									"key": "dataFim",
+									"value": "2024-07-29",
+									"disabled": true
+								},
+								{
+									"key": "ordem",
+									"value": "DESC",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2024-07-31\",\r\n    \"descricao\": \"Escala da manhã\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Usuário",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}/usuarios/{{usuarioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}",
+								"usuarios",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuários",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Usuário",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}/usuarios/{{usuarioId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}",
+								"usuarios",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Música",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}/musicas/{{musicaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}",
+								"musicas",
+								"{{musicaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Músicas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}/musicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Música",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/escalas/{{escalaId}}/musicas/{{musicaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"escalas",
+								"{{escalaId}}",
+								"musicas",
+								"{{musicaId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta relativa aos endpoints de escalas.\n\n---\n\n### Autenticação e Autorização\n\nTodas as rotas da aplicação necessitam de autenticação, que é feita por meio de Basic Auth. Para acessar as rotas é necessário ser um usuário cadastrado na aplicação ou ser um usuário administrador.\n\nRotas acessíveis apenas para usuário administrador:\n\n- Criar\n    \n- Deletar\n    \n- Atualizar\n    \n- Adicionar Usuário\n    \n- Remover Usuário\n    \n- Adicionar Música\n    \n- Remover Música\n    \n\n---\n\n### CRUD\n\n##### Campos para Criação de Escala\n\n- data: string (formato AAAA-MM-DD)\n    \n- descricao (opcional): string\n    \n\n##### Campos para Atualização de Escala\n\n- data (opcional): string (formato AAAA-MM-DD)\n    \n- descricao (opcional): string\n    \n\n---\n\n### Parâmetros para filtragem\n\nA rota \"Listar\" pode receber os seguintes parâmetros como _query params_ para filtrar os resultados:\n\n- dataInicio (formato AAAA-MM-DD)\n    \n- dataFim (formato AAAA-MM-DD)\n    \n- ordem (\"ASC\" ou \"DESC\")"
+		}
+	]
+}
