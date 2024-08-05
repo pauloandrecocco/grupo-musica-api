@@ -1,27 +1,33 @@
 ## Pré-requisitos
 
-- Docker
-- Node.js
-
----
+- Node.js;
+- Docker.
 
 ## Instalação
 
-- Clonar este repositório
-- Configurar variáveis de ambiente (arquivo `.env`)
-- No diretório do repositório clonado, rodar o comando `npm install`
-- No diretório do repositório clonado, rodar o comando `docker-compose up -d` para criar o banco de dados
-- No diretório do repositório clonado, rodar o comando `npm run start:dev` para subir a API
-
----
+- Clonar este repositório;
+- Configurar variáveis de ambiente (criar arquivo `.env`);
+- No diretório do repositório clonado:
+  - Rodar o comando `npm install` para instalar as dependências;
+  - Rodar o comando `docker-compose up -d` para criar o banco de dados;
+  - Rodar o comando `npm run start:dev` para subir a API.
 
 ## Autenticação
 
-Todas as rotas da aplicação necessitam de autenticação, que é feita por meio de Basic Auth (credenciais `SUPERUSER_USER` e `SUPERUSER_PASS`, do arquivo `.env`). Para acessar as rotas é necessário ser um usuário cadastrado na aplicação ou ser um usuário administrador.
+Todas as rotas da aplicação necessitam de autenticação, que é feita por meio de Basic Auth.
 
----
+Para acessar as rotas é necessário ser um usuário cadastrado na aplicação ou ser um usuário administrador (credenciais `SUPERUSER_USER` e `SUPERUSER_PASS`, do arquivo `.env`).
 
-## Rota de Usuários
+## Rotas
+
+A pasta `/docs` contém uma _collection_ do Postman, com as rotas da aplicação divididas em 4 grupos:
+
+- Usuários;
+- Funcões;
+- Músicas;
+- Escalas.
+
+## Rotas de Usuários
 
 ### Autenticação e Autorização
 
@@ -33,6 +39,8 @@ Rotas acessíveis apenas para usuário administrador:
 - Remover Função
 
 As rotas "Atualizar" e "Listar Escalas" podem ser acessadas apenas pelo usuário administrador e pelo próprio usuário cadastrado.
+
+---
 
 ### CRUD
 
@@ -50,6 +58,8 @@ As rotas "Atualizar" e "Listar Escalas" podem ser acessadas apenas pelo usuário
 - `senha: string` (opcional)
 - `telefone: string` (opcional)
 
+---
+
 ### Parâmetros para filtragem
 
 A rota "Listar Escalas" pode receber os seguintes parâmetros como _query params_ para filtrar os resultados:
@@ -58,9 +68,7 @@ A rota "Listar Escalas" pode receber os seguintes parâmetros como _query params
 - `dataFim` (formato AAAA-MM-DD)
 - `ordem` ("ASC" ou "DESC")
 
----
-
-## Rota de Funções
+## Rotas de Funções
 
 ### Autenticação e Autorização
 
@@ -69,6 +77,8 @@ Rotas acessíveis apenas para usuário administrador:
 - Criar
 - Deletar
 - Atualizar
+
+---
 
 ### CRUD
 
@@ -82,9 +92,7 @@ Rotas acessíveis apenas para usuário administrador:
 - `nome: string` (opcional)
 - `descricao: string` (opcional)
 
----
-
-## Rota de Músicas
+## Rotas de Músicas
 
 ### Autenticação e Autorização
 
@@ -94,6 +102,8 @@ Rotas acessíveis apenas para usuário administrador:
 - Deletar
 - Atualizar
 - Listar Escalas
+
+---
 
 ### CRUD
 
@@ -111,6 +121,8 @@ Rotas acessíveis apenas para usuário administrador:
 - `tema: string` (opcional)
 - `tonalidade: string` (opcional)
 
+---
+
 ### Parâmetros para filtragem
 
 A rota "Listar" pode receber os seguintes parâmetros como _query params_ para filtrar os resultados:
@@ -126,9 +138,7 @@ A rota "Listar Escalas" pode receber os seguintes parâmetros como _query params
 - `dataFim` (formato AAAA-MM-DD)
 - `ordem` ("ASC" ou "DESC")
 
----
-
-## Rota de Escalas
+## Rotas de Escalas
 
 ### Autenticação e Autorização
 
@@ -142,6 +152,8 @@ Rotas acessíveis apenas para usuário administrador:
 - Adicionar Música
 - Remover Música
 
+---
+
 ### CRUD
 
 ##### Campos para Criação de Escala
@@ -153,6 +165,8 @@ Rotas acessíveis apenas para usuário administrador:
 
 - `data: string` (opcional) (formato AAAA-MM-DD)
 - `descricao: string` (opcional)
+
+---
 
 ### Parâmetros para filtragem
 
